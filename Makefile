@@ -3,7 +3,7 @@ CC = clang #can use alternative
 TARGET = pong
 
 # Paths based on your system configuration
-RAYLIB_ROOT = #PATH TO RAYLIB
+RAYLIB_ROOT = ${RAYLIB_PATH}
 INCLUDE_PATH = $(RAYLIB_ROOT)/include
 LIB_PATH = $(RAYLIB_ROOT)
 LOCAL_INCLUDE = ./include
@@ -29,7 +29,7 @@ all: $(TARGET)
 # Link the object files into the final executable
 $(TARGET): $(OBJS)
 	$(CC) $(OBJS) -o $(TARGET) $(LDFLAGS)
-	$(clean)l
+	$(clean)
 
 # Compile the .c files in the src folder to .o files
 # This puts the .o files right next to the .c files in the src folder
