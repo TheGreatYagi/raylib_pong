@@ -36,6 +36,7 @@ int main() {
 		while(!gameStart) { //title screen
 			BeginDrawing();
 			ClearBackground(bgColor);
+			DrawText(TextFormat("PONG!", WIN_SCORE), GetScreenWidth()/2-120, 80, 120, RAYWHITE);
 			DrawText(TextFormat("Press Space to start!\nFirst to %d wins!", WIN_SCORE), GetScreenWidth()/2, GetScreenHeight()/2, 35, RAYWHITE);
 			if (GetKeyPressed() == KEY_SPACE) {
 				gameStart =1;
