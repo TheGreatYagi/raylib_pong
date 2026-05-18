@@ -57,7 +57,7 @@ int main() {
 			//updatePlayer(&comm, 1);
 		} 
 
-		// Update comm movement to track ball
+		// Level System		
 		if (level == 1) {
 			if (score.player == WIN_SCORE)  {
 				// increment game level and display congrats
@@ -80,6 +80,7 @@ int main() {
 				CloseWindow();
 				return 0;
 			}
+			// Update comm movement to track ball
 			if ((GetRandomValue(0,100000)) > 82000) {
 				updateComm(&comm, &ball);
 				}

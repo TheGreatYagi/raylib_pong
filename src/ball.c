@@ -20,7 +20,7 @@ void updateBall(Ball* ball, Player* player, Player* comm, Score* score) {
 	if ((ball->vel_x == 1) && (ball->pos_x < MAX_RIGHT)) { //move to the right
 		ball->pos_x = ball->pos_x + 1;
 		//printf("ball should move right, pos_x is now: %d\n", ball->pos_x);
-	} else if ((ball->vel_x ==1) && (ball->pos_x == MAX_RIGHT)) { 
+	} else if ((ball->vel_x ==1) && (ball->pos_x == MAX_RIGHT)) {  // ball hits right wall
 		//handle update player score
 		updateScore(score, 1);
 		//for now change directions
@@ -30,7 +30,7 @@ void updateBall(Ball* ball, Player* player, Player* comm, Score* score) {
 	} else if ((ball->vel_x == 0) && (ball->pos_x > MAX_LEFT)) {// move to left 
 		ball->pos_x = ball->pos_x - 1;
 		//printf("ball should move left, pos_x is now: %d\n", ball->pos_x);
-	} else if ((ball->vel_x == 0) && (ball->pos_x == MAX_LEFT)) {
+	} else if ((ball->vel_x == 0) && (ball->pos_x == MAX_LEFT)) { // ball hits left wall
 		// handle update comm score
 		updateScore(score, 0);
 		// for now change directions
@@ -44,13 +44,13 @@ void updateBall(Ball* ball, Player* player, Player* comm, Score* score) {
 	if ((ball->vel_y == 1) && (ball->pos_y < MAX_DOWN)) { //move down
 		ball->pos_y += 1;
 		//printf("ball should move down, pos_y is now: %d\n", ball->pos_y);
-	} else if ((ball->vel_y == 1) && (ball->pos_y == MAX_DOWN)) {
+	} else if ((ball->vel_y == 1) && (ball->pos_y == MAX_DOWN)) { // ball hits floor
 		//printf("ball will now move up\n"); 
 		ball->vel_y = 0; //swap direction
 	} else if ((ball->vel_y == 0) && (ball->pos_y > MAX_UP)) {// move up
 		ball->pos_y -= 1;
 		//printf("ball should move up, pos_y is now: %d\n", ball->pos_y);
-	} else if ((ball->vel_y == 0) && (ball->pos_y == MAX_UP)) {
+	} else if ((ball->vel_y == 0) && (ball->pos_y == MAX_UP)) { // ball hits ceiling
 		ball->vel_y = 1;
 		//printf("ball will now move down\n"); 
 	}
@@ -66,7 +66,14 @@ void updateBall(Ball* ball, Player* player, Player* comm, Score* score) {
 		//printf("player->y is %d, ball->pos_y is %d\n", player->y, ball->pos_y);
 		// y:123, pos_y: 283
 		if ( ( player->y <= ball->pos_y ) && ((player->y + player->height) >= ball->pos_y)) { //check if player height is where ball should be
-			ball->vel_x = 1;
+			// add if ball hits under half or over half.
+			if (player->y + player->height/2 < ball->pos_y){
+				ball->vel_x = 1;
+				ball->vel_y = 1;
+			} else {
+				ball->vel_x = 1;
+				ball->vel_y = 0;
+			}
 		}
 		//ball->vel_x = !ball->vel_x;
 	}
@@ -75,7 +82,14 @@ void updateBall(Ball* ball, Player* player, Player* comm, Score* score) {
 	if (ball->pos_x == comm->x - comm->width/4) {
 		// printf("comm->y is %d, ball->pos_y is %d\n", comm->y, ball->pos_y);
 		if ( ( comm->y <= ball->pos_y ) && ((comm->y + comm->height) >= ball->pos_y)) { //check if player height is where ball should be
-			ball->vel_x = 0;
+						if (player->y + player->height/2 < ball->pos_y){
+				ball->vel_x = 0;
+				ball->vel_y = 0;
+			} else {
+				ball->vel_x = 0;
+				ball->vel_y = 1;
+			}
+			//ball->vel_x = 0;
 		}
 		//ball->vel_x = !ball->vel_x;
 
