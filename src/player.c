@@ -12,11 +12,11 @@ void updatePlayer(Player* player, int direction) {
 	//printf("moving player from %d, dir is %d\n", player->y, direction);
 	if ((direction == 0) && (player->y > 0)) {
 
-		player->y = player->y - 3;
+		player->y = player->y - 2;
 		if (player->y < 0) player->y = 0;
 	} 
-	if ((direction == 1) && (player->y <= 800-105+3)) {
-		player->y = player->y + 3;
+	if ((direction == 1) && (player->y <= 800-105+2)) {
+		player->y = player->y + 2;
 	}
 	//printf("\n\n");
 }

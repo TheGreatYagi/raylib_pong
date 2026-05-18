@@ -12,12 +12,14 @@ void updateComm(Player* comm, Ball* ball) {
     	if (ball->pos_y <= comm->y + 104/2) {
     		//printf("moving comm up\n");
     		updatePlayer(comm, 0);
+            updatePlayer(comm, 0);
     	}
     }
     if (ball->vel_y == 1) {
     	if (ball->pos_y > comm->y + 104/2) {
     		//printf("moving comm down\n");
     		updatePlayer(comm, 1);
+            updatePlayer(comm, 1);
     	}
     }
 

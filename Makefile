@@ -20,7 +20,7 @@ LDFLAGS = -L$(LIB_PATH) -lraylib -framework CoreVideo -framework IOKit -framewor
 
 # Source and Object files
 # We look inside the 'src' folder for your C files
-SRCS = src/main.c src/player.c src/ball.c src/comm.c
+SRCS = src/main.c src/player.c src/ball.c src/comm.c src/score.c
 OBJS = $(SRCS:.c=.o)
 
 # Default rule
@@ -29,7 +29,7 @@ all: $(TARGET)
 # Link the object files into the final executable
 $(TARGET): $(OBJS)
 	$(CC) $(OBJS) -o $(TARGET) $(LDFLAGS)
-	$(clean)
+	rm -f src/*.o
 
 # Compile the .c files in the src folder to .o files
 # This puts the .o files right next to the .c files in the src folder

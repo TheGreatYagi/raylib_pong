@@ -2,6 +2,9 @@
 #define SCORE_H
 #pragma once
 
+#include "raylib.h"
+
+extern const Color scoreColor;
 
 typedef struct Score {
     int player;

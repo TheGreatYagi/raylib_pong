@@ -10,7 +10,7 @@ const int MAX_LEFT = 0; //
 const int MAX_UP = 0;
 const int MAX_DOWN = 800;
 
-void updateBall(Ball* ball, Player* player, Player* comm) {
+void updateBall(Ball* ball, Player* player, Player* comm, Score* score) {
 	// 0,0 is upper left
 	// x: 1 is right, 0 is left
 	// y: 1 is down, 0 is up
@@ -22,6 +22,7 @@ void updateBall(Ball* ball, Player* player, Player* comm) {
 		//printf("ball should move right, pos_x is now: %d\n", ball->pos_x);
 	} else if ((ball->vel_x ==1) && (ball->pos_x == MAX_RIGHT)) { 
 		//handle update player score
+		updateScore(score, 1);
 		//for now change directions
 		ball->vel_x = 0;
 		ball->pos_x = ball->pos_x+1;
@@ -31,6 +32,7 @@ void updateBall(Ball* ball, Player* player, Player* comm) {
 		//printf("ball should move left, pos_x is now: %d\n", ball->pos_x);
 	} else if ((ball->vel_x == 0) && (ball->pos_x == MAX_LEFT)) {
 		// handle update comm score
+		updateScore(score, 0);
 		// for now change directions
 		ball->vel_x = 1;
 		//printf("ball will now move right\n"); 

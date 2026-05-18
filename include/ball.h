@@ -4,6 +4,7 @@
 
 #include <raylib.h>
 #include "player.h"
+#include "score.h"
 
 extern const Color ballColor;
 extern const int MAX_RIGHT;
@@ -18,12 +19,13 @@ typedef struct Ball {
 	int vel_x;
 	int vel_y;
 	Color color;
+	int delta;
 }Ball; 
 
 
 void drawBall(Ball* ball);
 struct Ball buildBall(float radius, int x, int y, Color color);
-void updateBall(Ball* ball, Player* player, Player* comm);
+void updateBall(Ball* ball, Player* player, Player* comm, Score* score);
 
 
 
